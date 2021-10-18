@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        
         <title>Static HTML Demo</title>
         <style>
             * {
@@ -21,9 +20,19 @@
         </style>
     </head>
     <body>
-        <div id="form" data-tf-widget="XmxQWpBX" data-tf-on-submit="submit" data-tf-hidden="study_id=bp134533"></div>
-        <script src="//embed.typeform.com/next/embed.js"></script>
+        <div id="form" data-tf-widget="XmxQWpBX" data-tf-on-submit="submit"></div>
+        <script
+            type="text/javascript"
+            referrerpolicy="origin-when-cross-origin"
+            src="//embed.typeform.com/next/embed.js"
+        ></script>
         <script>
+            // update study id hidden field with value from query params
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            const studyId = urlSearchParams.get("study_id");
+            document.getElementById("form").setAttribute("data-tf-hidden", `study_id=${studyId}`);
+
+            // register event handler for typeform submit
             function submit(event) {
                 Android.on24HourFormSubmitted();
                 console.log("Submitted with response id: " + event.response_id);
